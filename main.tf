@@ -26,7 +26,7 @@ resource "azurerm_storage_container" "tfstate" {
   container_access_type = var.terraform_backend.storage_container_access_type
 }
 ######################------Vnet and subnet-----###############################
-
+/*
 module "terraform_virtual_network" {
   depends_on = [
 
@@ -42,3 +42,4 @@ module "terraform_virtual_network" {
   address_prefixes            = ["10.10.1.0/27"]
 
 }
+*/
