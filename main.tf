@@ -44,7 +44,8 @@ resource "azurerm_static_site" "gatsby_static_website" {
 resource "azurerm_dns_cname_record" "static_website_dns" {
   depends_on = [
 
-    azurerm_resource_group.resource_group01
+    azurerm_resource_group.resource_group01,
+    azurerm_static_site.gatsby_static_website
   ]
   name                = "super-specials"
   zone_name           = "super-specials-alokk.com"
