@@ -6,7 +6,7 @@ provider "azurerm" {
 }
 
 ######################------Storage account-----###############################
-resource "azurerm_resource_group" "terraform_backend" {
+resource "azurerm_resource_group" "resource_group01" {
   name     = var.resource_group.name
   location = var.resource_group.location
   tags     = local.app_ops_tags
@@ -16,8 +16,8 @@ module "terraform_storage_account" {
   source = "./modules/storage/storage-account"
 
   storage_account_name = var.terraform_backend.storage_account_name
-  location             = azurerm_resource_group.terraform_backend.location
-  resource_group_name  = azurerm_resource_group.terraform_backend.name
+  location             = azurerm_resource_group.resource_group01.location
+  resource_group_name  = azurerm_resource_group.resource_group01.name
 }
 
 resource "azurerm_storage_container" "tfstate" {
@@ -25,6 +25,16 @@ resource "azurerm_storage_container" "tfstate" {
   storage_account_name  = module.terraform_storage_account.storage_account.name
   container_access_type = var.terraform_backend.storage_container_access_type
 }
+
+######################------Static website-----###############################
+
+resource "azurerm_static_site" "gatsby_static_website" {
+  name                = "super-specials-alokk-coles"
+  resource_group_name = azurerm_resource_group.resource_group01.name
+  location            = azurerm_resource_group.resource_group01.location
+  sku_tier            = "Free"
+}
+
 ######################------Vnet and subnet-----###############################
 /*
 module "terraform_virtual_network" {
