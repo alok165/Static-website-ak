@@ -39,7 +39,6 @@ resource "azurerm_static_site" "gatsby_static_website" {
   location            = "eastasia"
   sku_tier            = "Free"
   sku_size            = "Free"
-
 }
 
 resource "azurerm_dns_cname_record" "static_website_dns" {
