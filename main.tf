@@ -28,12 +28,24 @@ resource "azurerm_storage_container" "tfstate" {
 
 ######################------Static website-----###############################
 
+
 resource "azurerm_static_site" "gatsby_static_website" {
   name                = "super-specials-alokk-coles"
   resource_group_name = azurerm_resource_group.resource_group01.name
   location            = "eastasia"
   sku_tier            = "Free"
+  sku_size            = "Free"
+
 }
+
+resource "azurerm_dns_cname_record" "static_website_dns" {
+  name                = "super-specials"
+  zone_name           = "super-specials-alokk.com"
+  resource_group_name = azurerm_resource_group.resource_group01.name
+  ttl                 = 300
+  record              = azurerm_static_site.gatsby_static_website.default_host_name
+}
+
 
 ######################------Vnet and subnet-----###############################
 /*
