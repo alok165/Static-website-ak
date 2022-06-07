@@ -30,6 +30,10 @@ resource "azurerm_storage_container" "tfstate" {
 
 
 resource "azurerm_static_site" "gatsby_static_website" {
+  depends_on = [
+
+    azurerm_resource_group.resource_group01
+  ]
   name                = "super-specials-alokk-coles"
   resource_group_name = azurerm_resource_group.resource_group01.name
   location            = "eastasia"
@@ -39,6 +43,10 @@ resource "azurerm_static_site" "gatsby_static_website" {
 }
 
 resource "azurerm_dns_cname_record" "static_website_dns" {
+  depends_on = [
+
+    azurerm_resource_group.resource_group01
+  ]
   name                = "super-specials"
   zone_name           = "super-specials-alokk.com"
   resource_group_name = azurerm_resource_group.resource_group01.name
