@@ -31,7 +31,7 @@ resource "azurerm_storage_container" "tfstate" {
 resource "azurerm_static_site" "gatsby_static_website" {
   name                = "super-specials-alokk-coles"
   resource_group_name = azurerm_resource_group.resource_group01.name
-  location            = azurerm_resource_group.resource_group01.location
+  location            = "eastasia"
   sku_tier            = "Free"
 }
 
