@@ -48,7 +48,7 @@ resource "azurerm_dns_cname_record" "static_website_dns" {
     azurerm_resource_group.resource_group01,
     azurerm_static_site.gatsby_static_website
   ]
-  name                = "super-specials"
+  name                = "super-specials-test1"
   zone_name           = "super-specials-alokk.com"
   resource_group_name = azurerm_resource_group.resource_group01.name
   ttl                 = 300
